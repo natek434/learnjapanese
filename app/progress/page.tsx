@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/src/lib/auth";
+import { auth } from "@/src/lib/auth";
 import { getProgressBreakdown, getProgressSummary } from "@/src/lib/progress";
 import { ProgressDashboard } from "@/src/components/progress/progress-dashboard";
 import { Button } from "@/src/components/ui/button";
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProgressPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user) {
     return (
       <section className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
