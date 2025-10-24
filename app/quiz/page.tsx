@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/src/lib/auth";
+import { auth } from "@/src/lib/auth";
 import { initializeSchedule } from "@/src/lib/srs";
 import { getUserProgress } from "@/src/lib/progress";
 import { kanaEntries } from "@/src/data/kana";
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function QuizPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session?.user) {
     return (

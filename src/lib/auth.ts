@@ -1,6 +1,7 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import type { NextAuthOptions, Session } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import type { NextAuthConfig, Session } from "next-auth";
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import { compare, hash } from "bcryptjs";
 import { z } from "zod";
 import { prisma } from "@/src/lib/prisma";
@@ -15,7 +16,7 @@ const credentialsSchema = z.object({
 export type SessionUser = NonNullable<Session["user"]>;
 export type AppSession = Session;
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt"
@@ -24,7 +25,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/sign-in"
   },
   providers: [
-    CredentialsProvider({
+    Credentials({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
@@ -96,3 +97,9 @@ export const authOptions: NextAuthOptions = {
     }
   }
 };
+
+const { auth: authFn, signIn, signOut, handlers } = NextAuth(authOptions);
+
+export const auth = authFn;
+export { signIn, signOut };
+export const { GET, POST } = handlers;

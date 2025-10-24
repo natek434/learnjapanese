@@ -1,9 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth/next";
 import { z } from "zod";
-import { authOptions } from "@/src/lib/auth";
+import { auth } from "@/src/lib/auth";
 import { prisma } from "@/src/lib/prisma";
 
 const progressSchema = z.object({
@@ -15,7 +14,7 @@ const progressSchema = z.object({
 });
 
 export async function upsertProgress(input: unknown) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.id) {
     throw new Error("Unauthorized");
   }
