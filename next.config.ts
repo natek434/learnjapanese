@@ -5,12 +5,13 @@ const isProd = process.env.NODE_ENV === "production";
 
 const baseConfig: NextConfig = {
   reactStrictMode: true,
+  typedRoutes: true,
   experimental: {
-    typedRoutes: true,
     serverActions: {
       bodySizeLimit: "1mb"
     }
   },
+  turbopack: {},
   images: {
     remotePatterns: [
       {

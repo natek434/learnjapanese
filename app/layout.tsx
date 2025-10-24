@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Providers } from "@/src/components/providers";
 import { cn } from "@/src/lib/utils";
@@ -17,8 +17,11 @@ export const metadata: Metadata = {
   description:
     "Learn Japanese kana with spaced repetition flashcards, pronunciation practice, and stroke guidance.",
   manifest: "/manifest.json",
-  themeColor: "#2563eb",
   metadataBase: new URL("https://example.com")
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2563eb"
 };
 
 export default function RootLayout({
