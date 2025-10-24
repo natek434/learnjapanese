@@ -39,10 +39,7 @@
         "./content/*"
       ]
     },
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "noEmit": true
   },
   "include": [
@@ -51,8 +48,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next\\dev/types/**/*.ts",
-    ".next\\dev/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
