@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 216 100% 99%;
+  --foreground: 218 25% 12%;
+  --muted: 218 35% 94%;
+  --accent: 221 83% 53%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 42 94% 65%;
+  --secondary-foreground: 218 25% 12%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+}
+
+[data-theme="dark"] {
+  --background: 222 47% 11%;
+  --foreground: 214 32% 91%;
+  --muted: 222 32% 18%;
+  --accent: 199 89% 48%;
+  --primary: 199 89% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 51 94% 68%;
+  --secondary-foreground: 214 32% 12%;
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+a {
+  @apply text-primary underline-offset-4 transition hover:underline;
+}
+
+.focus-outline {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
