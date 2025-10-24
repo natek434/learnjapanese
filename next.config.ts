@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import withPWA from "next-pwa";
+import withSerwistInit from "@serwist/next";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -22,9 +22,12 @@ const baseConfig: NextConfig = {
   }
 };
 
-export default withPWA({
-  dest: "public",
+const withSerwist = withSerwistInit({
   disable: !isProd,
-  register: true,
-  skipWaiting: true
-})(baseConfig);
+  cacheOnNavigation: true,
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
+  globDirectory: "public"
+});
+
+export default withSerwist(baseConfig);
